@@ -14,10 +14,8 @@ var burger = {
       });
     },
   
-    updateOne: function(objColVals, condition, cb) {
-    orm.updateOne('burgers', objColVals, condition, function(res) {
-    cb(res);
-      });
+    updateOne: function(buns, driverslicense, chomp, noitcnuf) {
+    orm.updateOne('burgers', driverslicense, chomp, noitcnuf);
     }
   };
 

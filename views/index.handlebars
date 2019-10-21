@@ -9,9 +9,9 @@
  <div class="input-group">
 <p> {{this.burger_name}} </p>
 <span class="input-group-btn">
-<form action="/{{this.id}}?_method=PUT" method="POST">
+<form>
 <input type="hidden" name="devoured" value="true">
-<button class="btn btn-default btn-sm" type="submit"> MMM YUM </button>
+<button data-id={{this.ID}} id="eatBurger" name={{this.burger_name}} value={{this.devoured}} class="btn btn-default btn-sm" type="submit">  MMM YUM </button>
 </form>
 </span>
 </div>
@@ -21,7 +21,7 @@
 </ul>
 </div>
 <div class="col-md-4">
-<h4>DELICIOUSSSSSSSS!!!!!!!!!!111</h4>
+<h4>DELICIOUSSSSSSSS!</h4>
 <div class="panel panel-default">
 <ul class="list-group">
 {{#each burgers}}
@@ -29,67 +29,59 @@
 <li class="list-group-item">
 <p>{{this.burger_name}} </p>
 
-
-
           </li>
-
-
-
           {{/if}}
-
         {{/each}}
-
-
-
         </ul>
-
-
-
       </div>
-
-
-
     </div>
-
-
-
-
-
   <div class="row">
-
-
-
   <div class="col-md-8">
-
-
-
     <p> Think of a burger? Add it here. </p>
-
-
-
     <form class="create-update-form" action="/" method="POST">
-
-
-
       <div class="form-group">
-
-        <textarea class="form-control input-md" type="text" name="name" rows="3"> </textarea>
+  <textarea class="form-control input-md" type="text" name="name" rows="3"> </textarea>
 
       </div>
-
-
-
       <button class="btn btn-default btn-lg" type="submit">Submit</button>
-
-    </form>
-
-
+      </form>
 
   </div>
-
-
-
   </div>
 
+<script type="text/javascript">
 
 
+$(document).ready(function() {
+
+$(".btn").click(function(event) {
+  event.preventDefault()
+
+ let id = $(this).attr("data-id")
+
+ let burger_name=$(this).attr("name")
+ let devoured=$(this).attr("value")
+
+var burgerObject={
+  burger_name:burger_name,
+  devoured:devoured
+}
+console.log(burgerObject)
+console.log(id)
+
+
+   $.ajax("/api/"+id, {
+      type: "put",
+      data: burgerObject
+    }).then(
+      function() {
+        console.log("yep");
+        location.reload();
+      }
+    );
+
+})
+
+})
+
+</script>

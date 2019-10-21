@@ -10,14 +10,12 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 
-app.use(ovrRide('_method'));
 app.engine('handlebars',exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+require('./controllers/route')(app)
 
-var routes = require('./controllers/route');
-app.use('/', routes);
 
-var port = 3000;
+var port = 8080;
 app.listen(port);
