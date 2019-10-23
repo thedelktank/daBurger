@@ -1,5 +1,5 @@
 
-var burger = require('/daBurger/daBurger/models/burgers');
+var burger = require('../models/burgers');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
