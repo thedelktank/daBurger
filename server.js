@@ -17,5 +17,5 @@ app.set('view engine', 'handlebars');
 require('./controllers/route')(app)
 
 
-var port = 8080;
+var port = process.env.PORTm || 8080;
 app.listen(port);
